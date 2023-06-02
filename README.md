@@ -1,5 +1,12 @@
 # caa-group03
 
+## TODO:
+
+1. Add prices to .csv file and change load script (Maria & Ognjen)
+2. Create flask project with neo4j query example (Rene)
+3. Label known address owners (Maria & Ognjen)
+4. BitPanda Pro analysis (Mimi)
+5. 
 
 ## NEO4J Setup
 
@@ -39,3 +46,4 @@ MATCH (a:Address)<-[t:Transaction]-(b:Address)
 WHERE a.value=~'0x0000.*' //to avoid large graph displays
 return a,t,b
 ```
+
