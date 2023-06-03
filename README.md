@@ -2,9 +2,9 @@
 
 ## TODO:
 
-1. Add prices to .csv file and change load script (Maria & Ognjen)
+1. Add prices to .csv file and change load script (Ognjen)
 2. Create flask project with neo4j query example (Rene)
-3. Label known address owners (Maria & Ognjen)
+3. Label known address owners (Maria)
 4. BitPanda Pro analysis (Mimi)
 5. 
 
