@@ -3,6 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Personal credentials
+creds/
+
+# Dump files for json responses
+caa-python/dump/
+
 # C extensions
 *.so
 
