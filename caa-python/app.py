@@ -9,7 +9,7 @@ app = Flask(__name__)
 # Use neo4j (GraphDatabase)
 @app.route('/example1')
 def example_1():
-    _example = Example("bolt://localhost:7687", "neo4j", "password")
+    _example: Example = Example("bolt://localhost:7687", "neo4j", "password")
     _example.close()
     return _example.print_example()
 
@@ -25,7 +25,6 @@ def example_2():
 
 
 class Example:
-
     def __init__(self, uri, user, password):
         self.driver = GraphDatabase.driver(uri, auth=(user, password))
         self.driver.verify_connectivity()
