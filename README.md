@@ -26,9 +26,10 @@ _Works for WSL or Bash terminal, for CMD/Powershell might need to replace $HOME 
 
 ```bash
 # copy the csv file 
-docker cp datasource/etherscan-best-pub-trans-all.csv <name_of_neo4j_container>:/var/lib/neo4j/import
+docker cp datasource/etherscan-best-pub-trans.csv <name_of_neo4j_container>:/var/lib/neo4j/import
 ```
 
+Go to : http://localhost:7474/browser/ after the docker container was successfully started.
 In the neo4j console use the following command to load the data:
 
 ```cypher
