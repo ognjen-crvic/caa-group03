@@ -2,7 +2,7 @@
 
 ## TODO:
 
-1. Add prices to .csv file and change load script (Ognjen)
+1. ~~Add prices to .csv file and change load script~~ (Ognjen)
 2. Create flask project with neo4j query example (Rene)
 3. Label known address owners (Maria)
 4. BitPanda Pro analysis (Mimi)
@@ -32,10 +32,10 @@ docker cp datasource/etherscan-best-pub-trans-all.csv <name_of_neo4j_container>:
 In the neo4j console use the following command to load the data:
 
 ```cypher
-LOAD CSV FROM "file:///etherscan-best-pub-trans-all.csv" as row
+LOAD CSV FROM "file:///etherscan-best-pub-trans.csv" as row
 MERGE (a:Address {value:row[4]})
 MERGE (b:Address {value:row[5]})
-MERGE (a)-[:Transaction {tx_hash:row[0], block_num:row[1], unix_ts: row[2], datetime:row[3], amount:row[6], method:row[7]}]->(b)
+MERGE (a)-[:Transaction {tx_hash:row[0], block_num:row[1], unix_ts: row[2], datetime:row[3], amount:row[6], method:row[7], block_ts:row[8], open_price: row[10], close_price: row[13], low_price: row[11], high_price: row[12]}]->(b)
 RETURN row[4], row[5], row[0]
 ```
 
