@@ -47,4 +47,13 @@ MATCH (a:Address)<-[t:Transaction]-(b:Address)
 WHERE a.value=~'0x0000.*' //to avoid large graph displays
 return a,t,b
 ```
+### Conda environment
+Create a conda environment and install all the necessary dependencies using the provided env.yaml file:
+```cypher
+conda env create -f environment.yml
+```
+After the environment is created, activate it using the following command:
+```cypher
+conda activate caa_group03
+```
 
