@@ -32,6 +32,7 @@ docker cp datasource/etherscan-best-pub-trans.csv <name_of_neo4j_container>:/var
 Go to : http://localhost:7474/browser/ after the docker container was successfully started.
 In the neo4j console use the following command to load the data:
 
+[//]: # (TODO add label column to dataset)
 ```cypher
 LOAD CSV FROM "file:///etherscan-best-pub-trans.csv" as row
 MERGE (a:Address {value:row[4]})

@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, Response
 from neo4j import GraphDatabase, Result
 from pandas import DataFrame
 from py2neo import Graph
@@ -15,6 +15,26 @@ EXAMPLE_QUERY = """
     WHERE a.value=~'0x0000.*'
     RETURN a,t,b
     """
+
+METHOD_QUERY = """
+    MATCH (a:Address)<-[t:Transaction]-(b:Address)
+    WHERE t.method = 'Transfer'
+    RETURN a,t,b
+"""
+
+# Quantity larger than 100000
+AMOUNT_QUERY = """
+    MATCH (a:Address)<-[t:Transaction]-(b:Address)
+    WHERE toFloat(replace(t.amount, ',', '')) > 100000
+    RETURN a,t,b
+"""
+
+# Transactions in June 2021
+TIMESTAMP_QUERY = """
+    MATCH (a:Address)<-[t:Transaction]-(b:Address)
+    WHERE toFloat(t.unix_ts) >= 1622505600 AND toFloat(t.unix_ts) <= 1625097599
+    RETURN a,t,b
+"""
 
 
 # Use neo4j (GraphDatabase)
@@ -59,6 +79,13 @@ class Example:
     def _read_example_query(tx):
         res: Result = tx.run(EXAMPLE_QUERY)
         return res.data()  # get JSON-serializable data for testing
+
+
+@app.route('/method/<method>')
+def filter_by_method(method):
+    method_gds: GraphDataScience = GraphDataScience(HOST, auth=(USER, PASSWORD))
+    df: DataFrame = method_gds.run_cypher(METHOD_QUERY)
+    return Response(df.to_json(), mimetype="application/json")
 
 
 if __name__ == '__main__':
