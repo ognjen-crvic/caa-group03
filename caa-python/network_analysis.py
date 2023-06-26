@@ -31,7 +31,7 @@ in_degrees = dict(G.in_degree())
 out_degrees = dict(G.out_degree())
 df_degrees = pd.DataFrame.from_dict(in_degrees, orient='index', columns=['in_degree'])
 df_degrees['out_degree'] = pd.Series(out_degrees)
-df_degrees.to_csv('degree_analysis.csv', index_label='address')
+df_degrees.to_csv('../datasource/degree_analysis.csv', index_label='address')
 
 ## remove nodes with in_degree + out_degree <= 1
 all_sorted_nodes_in = dict()
@@ -50,7 +50,7 @@ for value in in_degrees:
 df_degrees = pd.DataFrame.from_dict(all_sorted_nodes_in, orient='index', columns=['in_degree'])
 df_degrees['out_degree'] = pd.Series(all_sorted_nodes_out)
 df_degrees['total_degree'] = df_degrees['in_degree'] + df_degrees['out_degree']
-df_degrees.to_csv('sorted_nodes.csv', index_label='address')
+df_degrees.to_csv('../datasource/sorted_nodes.csv', index_label='address')
 ##
 
 # in and out degree plot
